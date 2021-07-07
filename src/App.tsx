@@ -1,8 +1,9 @@
+import './assets/styles/global.scss';
+import Routes from './routes';
+
 function App() {
   return (
-    <div className="App">
-      App
-    </div>
+    <Routes />
   );
 }
 
