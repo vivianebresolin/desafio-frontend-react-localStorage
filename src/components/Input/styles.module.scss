@@ -1,0 +1,13 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    margin-left: 0.4rem;
+  }
+
+  input {
+    margin: 0.65rem 0 1.5rem;
+    padding: 0.3rem;
+  }
+}
