@@ -6,16 +6,12 @@ import { Input } from "../../../../components/Input";
 import { Button } from "../../../../components/Button";
 import styles from './styles.module.scss';
 import { FormLogin } from "../FormLogin";
+import { useAuth } from "../../../../hooks/useAuth";
 
 type UserFormData = {
   name: string;
   password: string;
   password_confirmation: string;
-}
-
-type UserStorage = {
-  name: string;
-  password: string;
 }
 
 const userSchema = yup.object().shape({
@@ -26,34 +22,19 @@ const userSchema = yup.object().shape({
 
 export function FormNewUser() {
   const [newUser, setNewUser] = useState(true);
-  const [usersInLocalStorage, setUsersInLocalStorage] = useState<UserStorage[]>(
-    localStorage.hasOwnProperty('users')
-      ? JSON.parse(localStorage.getItem('users')!)
-      : []
-  );
+  const { verifyIfUserExists, updateUsersInLocalStorage } = useAuth();
   const { register, handleSubmit, formState, reset } = useForm({
     resolver: yupResolver(userSchema)
   });
   const { errors } = formState;
 
   const handleSubmitFormLogin: SubmitHandler<UserFormData> = (values) => {
-    const userExists = usersInLocalStorage.filter(user => user.name === values.name);
-    console.log(userExists, typeof userExists);
-
-    if (userExists.length !== 0) {
-      alert('Usuário já cadastrado!');
+    if (verifyIfUserExists(values.name)) {
       reset();
       return;
     }
 
-    const updatedUsers = [...usersInLocalStorage, {
-      name: values.name,
-      password: values.password
-    }];
-
-    localStorage.setItem('users', JSON.stringify(updatedUsers));
-    setUsersInLocalStorage(updatedUsers);
-
+    updateUsersInLocalStorage(values);
     reset();
   }
 

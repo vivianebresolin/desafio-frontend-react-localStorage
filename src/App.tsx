@@ -1,9 +1,12 @@
 import './assets/styles/global.scss';
+import { AuthContextProvider } from './contexts/AuthContext';
 import Routes from './routes';
 
 function App() {
   return (
-    <Routes />
+    <AuthContextProvider>
+      <Routes />
+    </AuthContextProvider>
   );
 }
 
