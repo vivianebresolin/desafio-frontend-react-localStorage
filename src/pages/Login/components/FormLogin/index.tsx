@@ -1,4 +1,6 @@
 import { FormEvent, useRef } from 'react';
+import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2'
 import { Button } from '../../../../components/Button';
 import { Input } from '../../../../components/Input';
 import { useAuth } from '../../../../hooks/useAuth';
@@ -6,6 +8,7 @@ import styles from './styles.module.scss';
 
 export function FormLogin() {
   const { usersInLocalStorage } = useAuth();
+  const history = useHistory();
   const userNameRef = useRef<HTMLInputElement>(null);
   const userPasswordRef = useRef<HTMLInputElement>(null);
 
@@ -15,22 +18,24 @@ export function FormLogin() {
     const enteredName = userNameRef.current!.value
     const enteredPassword = userPasswordRef.current!.value
 
-    if (enteredName.length === 0 || enteredPassword.length === 0) {
-      alert('É necessário informar usuário e senha.');
-      return;
-    }
-
-    const userFound = usersInLocalStorage.filter(userSaved => userSaved.name === enteredName)
+    const userFound = usersInLocalStorage
+      .filter(userSaved => userSaved.name === enteredName);
 
     if (userFound.length === 1) {
       if (userFound[0].password === enteredPassword) {
         console.log('senha correta', userFound);
+
+        history.push("/");
         return;
-        // ao invés do return, redirecionar para a página principal da aplicação
       }
     }
 
-    alert('Usuário e/ou senha inválidos.');
+    Swal.fire(
+      {
+        icon: 'error',
+        text: 'Usuário e/ou senha inválidos.'
+      }
+    );
   }
 
   return (
@@ -42,11 +47,13 @@ export function FormLogin() {
         label="Usuário *"
         type="text"
         ref={userNameRef}
+        required
       />
       <Input
         label="Senha *"
         type="password"
         ref={userPasswordRef}
+        required
       />
       <Button type="submit" text={'Entrar'} />
     </form>

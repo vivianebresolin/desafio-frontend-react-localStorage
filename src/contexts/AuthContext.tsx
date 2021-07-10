@@ -1,12 +1,12 @@
 import { createContext, ReactNode, useState } from "react";
 
 type AuthContextType = {
-  usersInLocalStorage: UserInLocalStorage[];
+  usersInLocalStorage: User[];
   verifyIfUserExists: (userName: string) => boolean
-  updateUsersInLocalStorage: (newUser: UserInLocalStorage) => void;
+  updateUsersInLocalStorage: (newUser: User) => void;
 }
 
-type UserInLocalStorage = {
+type User = {
   name: string;
   password: string;
 }
@@ -18,7 +18,7 @@ interface AuthContextProviderProps {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider(props: AuthContextProviderProps) {
-  const [usersInLocalStorage, setUsersInLocalStorage] = useState<UserInLocalStorage[]>(
+  const [usersInLocalStorage, setUsersInLocalStorage] = useState<User[]>(
     localStorage.hasOwnProperty('users')
       ? JSON.parse(localStorage.getItem('users')!)
       : []
@@ -35,7 +35,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     }
   }
 
-  function updateUsersInLocalStorage(newUser: UserInLocalStorage) {
+  function updateUsersInLocalStorage(newUser: User) {
     const updatedUsers = [...usersInLocalStorage, {
       name: newUser.name,
       password: newUser.password

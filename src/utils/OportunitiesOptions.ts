@@ -1,0 +1,1 @@
+export const oportunities_options = ['RPA', 'Produto Digital', 'Analytics', 'BPM'];

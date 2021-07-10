@@ -1,6 +1,6 @@
 import { Header } from '../../components/Header';
-import { FormClient } from './components/FormClient';
-import { Oportunities } from './components/Oportunities';
+import { FormNewLead } from './components/FormNewLead';
+
 import styles from './styles.module.scss';
 
 export function CreateNewLead() {
@@ -8,8 +8,7 @@ export function CreateNewLead() {
     <div className={styles.newLeadContainer}>
       <Header title='Novo Lead' />
       <main className={styles.newLeadContent}>
-        <FormClient />
-        <Oportunities />
+        <FormNewLead />
       </main>
     </div>
   );

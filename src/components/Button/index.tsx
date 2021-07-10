@@ -1,16 +1,21 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import styles from './styles.module.scss';
 
-interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
+// interface ButtonProps extends ComponentPropsWithoutRef<"button"> {
+//   text: string;
+//   blueButton?: boolean;
+// }
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   text: string;
   blueButton?: boolean;
 }
 
-export function Button({ text, type, blueButton = false }: ButtonProps) {
+export function Button({ text, blueButton = false, ...rest }: ButtonProps) {
   return (
     <button
-      type={type}
       className={blueButton ? styles.blueButton : styles.button}
+      {...rest}
     >
       {text}
     </button>
