@@ -1,0 +1,29 @@
+.panelContainer {
+  margin-top: 0.5rem;
+
+  table {
+    width: 100%;
+
+    th {
+      background-color: gray;
+      color: white;
+    }
+
+    td {
+      text-align: center;
+      background-color: lightgray;
+    }
+
+    th,
+    td {
+      padding: 1.5rem 0;
+    }
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+}
