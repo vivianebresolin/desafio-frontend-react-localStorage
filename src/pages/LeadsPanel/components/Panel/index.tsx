@@ -1,6 +1,10 @@
+import { useLeads } from '../../../../hooks/useLeads';
+import { PanelRow } from '../PanelRow';
 import styles from './styles.module.scss';
 
 export function Panel() {
+  const { leadsInStorage, updateLeadStatus } = useLeads();
+
   return (
     <main className={styles.panelContainer}>
       <table>
@@ -12,11 +16,17 @@ export function Panel() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Jill</td>
-            <td>Smith</td>
-            <td>50</td>
-          </tr>
+          {leadsInStorage.map((lead, index) =>
+            <PanelRow
+              key={lead.id}
+              id={lead.id}
+              index={index}
+              companyName={lead.companyName}
+              status={lead.status}
+              leads={leadsInStorage}
+              updateLeadStatus={updateLeadStatus}
+            />
+          )}
         </tbody>
       </table>
     </main>
