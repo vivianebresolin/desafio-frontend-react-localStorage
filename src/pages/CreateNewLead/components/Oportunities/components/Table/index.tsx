@@ -59,6 +59,7 @@ export function Table({ updateOpportunities }: TableProps) {
       <tbody>
         {oportunities_options.map((option, index) =>
           <TableRow
+            key={index * Math.random()}
             text={option}
             index={index}
             checked={checkedState}

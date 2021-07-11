@@ -1,14 +1,8 @@
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Swal from 'sweetalert2'
-
-type Lead = {
-  companyName: string;
-  companyPhone: string;
-  companyEmail: string;
-  opportunities: {},
-  status: string;
-}
+import { Lead } from '../types';
+import { orderListByName } from "../utils/OrderLeadsByName";
 
 export function useLeads() {
   const [leadsInStorage, setLeadsInStorage] = useState<Lead[]>(
@@ -20,6 +14,7 @@ export function useLeads() {
 
   function saveLeadInStorage(newLead: Lead) {
     const updatedLeads = [...leadsInStorage, {
+      id: newLead.id,
       companyName: newLead.companyName,
       companyPhone: newLead.companyPhone,
       companyEmail: newLead.companyEmail,
@@ -27,9 +22,11 @@ export function useLeads() {
       status: newLead.status
     }];
 
+    const leadsInOrder = orderListByName(updatedLeads);
+
     try {
-      localStorage.setItem('leads', JSON.stringify(updatedLeads));
-      setLeadsInStorage(updatedLeads);
+      localStorage.setItem('leads', JSON.stringify(leadsInOrder));
+      setLeadsInStorage(leadsInOrder);
 
       Swal.fire(
         'Feito!',
@@ -47,5 +44,32 @@ export function useLeads() {
     }
   }
 
-  return { leadsInStorage, saveLeadInStorage };
+  function updateLeadStatus(lead: Lead, newStatus: string) {
+    const leadsToUpdate = leadsInStorage.filter(item => item.id !== lead.id);
+
+    const updatedLeads = [...leadsToUpdate, {
+      id: lead.id,
+      companyName: lead.companyName,
+      companyPhone: lead.companyPhone,
+      companyEmail: lead.companyEmail,
+      opportunities: lead.opportunities,
+      status: newStatus
+    }];
+
+    const leadsInOrder = orderListByName(updatedLeads);
+
+    try {
+      localStorage.setItem('leads', JSON.stringify(leadsInOrder));
+      setLeadsInStorage(leadsInOrder);
+
+    } catch (error) {
+      Swal.fire(
+        'Ooops!',
+        'Algo deu errado...',
+        'error'
+      );
+    }
+  }
+
+  return { leadsInStorage, saveLeadInStorage, updateLeadStatus };
 }

@@ -1,4 +1,5 @@
 import { FormEvent, useRef } from 'react';
+import { v4 as uuid } from 'uuid';
 import { Button } from '../../../../components/Button';
 import { Input } from '../../../../components/Input';
 import { useLeads } from '../../../../hooks/useLeads';
@@ -22,6 +23,7 @@ export function FormNewLead() {
     event.preventDefault();
 
     const newLead = {
+      id: uuid(),
       companyName: clientNameRef.current!.value,
       companyPhone: clientPhoneRef.current!.value,
       companyEmail: clientEmailRef.current!.value,
