@@ -4,6 +4,8 @@ type AuthContextType = {
   usersInLocalStorage: User[];
   verifyIfUserExists: (userName: string) => boolean
   updateUsersInLocalStorage: (newUser: User) => void;
+  isAuthenticated: boolean;
+  authenticateUser: () => void;
 }
 
 type User = {
@@ -23,6 +25,12 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       ? JSON.parse(localStorage.getItem('users')!)
       : []
   );
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  function authenticateUser() {
+    setIsAuthenticated(true);
+  }
+
 
   function verifyIfUserExists(userName: string) {
     const userExists = usersInLocalStorage.findIndex(user => user.name === userName);
@@ -46,7 +54,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
   }
 
   return (
-    <AuthContext.Provider value={{ usersInLocalStorage, verifyIfUserExists, updateUsersInLocalStorage }}>
+    <AuthContext.Provider value={{ usersInLocalStorage, verifyIfUserExists, updateUsersInLocalStorage, isAuthenticated, authenticateUser }}>
       {props.children}
     </AuthContext.Provider>
   );

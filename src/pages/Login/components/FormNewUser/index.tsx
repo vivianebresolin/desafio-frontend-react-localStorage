@@ -35,7 +35,7 @@ export function FormNewUser() {
     }
 
     updateUsersInLocalStorage(values);
-    reset();
+    setTimeout(() => setNewUser(false), 1500);
   }
 
   return (

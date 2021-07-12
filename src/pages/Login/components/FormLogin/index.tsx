@@ -8,6 +8,7 @@ import styles from './styles.module.scss';
 
 export function FormLogin() {
   const { usersInLocalStorage } = useAuth();
+  const { authenticateUser } = useAuth();
   const history = useHistory();
   const userNameRef = useRef<HTMLInputElement>(null);
   const userPasswordRef = useRef<HTMLInputElement>(null);
@@ -24,6 +25,8 @@ export function FormLogin() {
     if (userFound.length === 1) {
       if (userFound[0].password === enteredPassword) {
         console.log('senha correta', userFound);
+
+        authenticateUser();
 
         history.push("/");
         return;
