@@ -1,46 +1,86 @@
-# Getting Started with Create React App
+# Desafio de Frontend com React e LocalStorage
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br />
 
-## Available Scripts
+<div align="center">
 
-In the project directory, you can run:
+  ![Typescript](https://img.shields.io/badge/-Typescript-black?style=flat-square&logo=typescript)
+  ![React](https://img.shields.io/badge/-React-black?style=flat-square&logo=react)
+
+</div>
+
+<br />
+
+Esta é uma aplicação frontend que tem como objetivo fazer a manutenção de Leads, e utiliza o localstorage do navegador como mecanismo de persistência para armazenar a lista de
+Leads, bem como os novos usuários criados.
+
+<br />
+
+## :hammer_and_wrench: Funcionalidades:
+
+### Tela de cadastro de usuário:
+Todos os campos são obrigatórios; a senha deve possuir ao menos 8 caracteres, contendo pelo menos, um caracter especial, um caracter numérico, um caracter maiúsculo, um caracter minúsculo; a senha e confirmação de senha devem ser iguais.
+
+### Tela de login:
+Estando já cadastrado no sistema (ou seja, se os dados do usuário já estiverem salvos no localstorage), basta informar o nome de usuário e a senha para efetuar o login na aplicação.
+
+### Painel de Leads:
+Possui uma tabela para exibição dos Leads por Status: Cliente em Potencial, Dados Confirmados, Reunião Agendada; cada Lead poderá ser “arrastado” (tendo assim seu status interno alterado) na
+seguinte sequencia: Cliente em Potencial >> Dados Confirmados, Dados Confirmados >> Reunião
+Agendada. Para que um Lead seja incluído na tabela, deverá ser utilizada a opção "Novo Lead(+)" (um botão), e uma nova tela com o formulário para cadastro será disponibilizada.
+
+### Cadastro de um novo Lead:
+Todos os campos são obrigatórios; As oportunidades podem ser marcadas/desmarcadas individualmente (através de CheckBoxes); Ao clicar no CheckBox no cabeçalho da coluna esquerda na grade de oportunidades, este marca ou desmarca todos; ao clicar no botão de Salvar, é exibida uma mensagem de confirmação de que o Lead foi incluído com sucesso; o Lead é incluído com o Status inicial de “Cliente em Potencial".
+
+<br />
+
+## :man_technologist: Imagens da Aplicação
+
+<div align="center">
+
+### Tela de cadastro de usuário
+
+<img src="public/imgs-readme/login1.png" width="100%"/>
+
+<br />
+
+### Tela de login
+
+<img src="public/imgs-readme/login2.png" width="100%"/>
+
+<br />
+
+### Painel de Leads
+
+<img src="public/imgs-readme/painel.png" width="100%"/>
+
+<br />
+
+### Cadastro de um novo Lead
+
+<img src="public/imgs-readme/novo-lead.png" width="100%"/>
+
+<br />
+
+</div>
+
+<br />
+
+## :nerd_face: Como rodar esse projeto no seu computador:
+
+Após efetuar o download ou o clone do projeto, e estando dentro da pasta raiz, realizar os seguintes comandos no terminal:
+
+### `yarn install`
+
+Esse comando serve para instalar todas as dependências necessárias para o projeto funcionar.
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p> Esse comando irá executar a aplicação em modo de desenvolvimento. </p>
+Abra http://localhost:3000 para ver a aplicação funcionando no browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br /> 
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+<div align="center">
+Made with 🧡 and :coffee: | Find me on <a href="https://www.linkedin.com/in/vivianebresolin/"> LinkedIn</a>
+</div>
